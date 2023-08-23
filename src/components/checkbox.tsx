@@ -24,7 +24,7 @@ export function Checkbox(props: CheckProps) {
     })}>
       <div className='flex items-center gap-4'>
         <CheckboxRadix.Root
-          className={clsx("border-2 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] bg-transparent outline-none transition-all", {
+          className={clsx("border-2 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] outline-none transition-all", {
             'hover:bg-product-purple-dark border-product-purple-light': !checked,
             'border-feedback-success-normal bg-feedback-success-normal hover:bg-feedback-success-light hover:border-feedback-success-light': checked
           })}
