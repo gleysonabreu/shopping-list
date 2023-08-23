@@ -1,8 +1,10 @@
 import clsx from "clsx";
 import { Apple, Beef, Carrot, Milk, Sandwich } from "lucide-react";
 
+export type TagTypes = 'bakery' | 'meat' | 'drink' | 'vegetable' | 'fruit';
+
 interface TagProps {
-  type: 'bakery' | 'meat' | 'drink' | 'vegetable' | 'fruit';
+  type: TagTypes;
   isChecked: boolean;
 }
 
