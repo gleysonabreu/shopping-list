@@ -8,6 +8,8 @@ import { Plus } from "lucide-react";
 import { Controller, FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from "zod";
+import { useProduct } from "@/hooks/useProduct";
+import { ProductType, QuantityType } from "@/contexts/product";
 
 type CreateItemProps = {
   quantity: number;
@@ -25,12 +27,19 @@ const schema = z.object({
 
 export function Header() {
   const createFormItem = useForm<CreateItemProps>({ resolver: zodResolver(schema), defaultValues: {
-    quantityType: 'unit'
+    quantityType: 'unit',
   } });
-  const { handleSubmit, formState: { errors, isSubmitting }, clearErrors, register, reset, control } = createFormItem;
+  const { handleSubmit, formState: { errors, isSubmitting }, control } = createFormItem;
+
+  const { handleSaveProduct } = useProduct();
 
   const handleAddItem: SubmitHandler<CreateItemProps> = async (data) => {
-    console.log(data);
+    await handleSaveProduct({
+      productName: data.productName,
+      productType: data.productType as ProductType,
+      quantity: data.quantity,
+      quantityType: data.quantityType as QuantityType,
+    });
   }
 
   return (
@@ -90,7 +99,7 @@ export function Header() {
               </div>
 
               <div className="w-10">
-                <Button type='submit'>
+                <Button type='submit' disabled={isSubmitting}>
                   <Plus size={24} />
                 </Button>
               </div>
