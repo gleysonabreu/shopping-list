@@ -22,9 +22,9 @@ export const ProductProviderContext = createContext<ProductProviderContextValues
 
 export function ProductProvider({ children }: ProductProviderContextProps) {
   const [products, setProducts] = useState<Product[]>(() => {
-    const storedProducts = localStorage.getItem('products');
+    const storedProducts = typeof window !== 'undefined' ? localStorage.getItem('products') : null;
 
-    return storedProducts ? JSON.parse(storedProducts) : [];
+    return storedProducts ? (JSON.parse(storedProducts)) as Product[] : [];
   });
 
   return (
