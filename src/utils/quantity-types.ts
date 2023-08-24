@@ -1,7 +1,7 @@
 export const quantityTypes = [
   {
     name: 'L',
-    value: 'litter'
+    value: 'liter'
   },
   {
     name: 'Kg',
