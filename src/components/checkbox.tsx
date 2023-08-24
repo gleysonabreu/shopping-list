@@ -17,6 +17,22 @@ interface CheckProps {
 export function Checkbox(props: CheckProps) {
   const [checked, setChecked] = useState(props.isCheck);
 
+  function parseProductQuantity() {
+    const quantityUnits = {
+      kilogram: 'kg',
+      liter: 'L',
+      unit: 'unidade',
+    };
+    
+    const unit = quantityUnits[props.quantityType];
+
+    if(props.quantityType === 'unit' && props.quantity > 1) {
+      return `${props.quantity} ${unit}s`;
+    } else {
+      return `${props.quantity} ${unit}`;
+    }
+  }
+
   return (
     <div className={clsx('flex items-center justify-between p-4  border rounded-lg', {
       'bg-gray-400 border-gray-300': !checked,
@@ -41,7 +57,7 @@ export function Checkbox(props: CheckProps) {
             'text-gray-100 font-bold': !checked,
             'text-gray-200 line-through': checked
           })}>{props.productName}</h1>
-          <span className='text-gray-200 text-xs font-normal'>{props.quantity} {props.quantityType}</span>
+          <span className='text-gray-200 text-xs font-normal'>{parseProductQuantity()}</span>
         </div>
       </div>
 
