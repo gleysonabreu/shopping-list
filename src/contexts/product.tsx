@@ -1,5 +1,5 @@
 'use client';
-import { randomBytes } from 'crypto';
+import { v4 as uuid } from 'uuid';
 import { ReactNode, createContext, useEffect, useState } from "react";
 
 export type ProductType = 'bakery' | 'meat' | 'drink' | 'vegetable' | 'fruit';
@@ -48,7 +48,7 @@ export function ProductProvider({ children }: ProductProviderContextProps) {
 
 
   async function handleSaveProduct(data: CreateProduct) {
-    const id = randomBytes(20).toString('hex');
+    const id = uuid();
     const product: Product = {
       ...data,
       done: false,
