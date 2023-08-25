@@ -2,7 +2,6 @@
 import * as CheckboxRadix from '@radix-ui/react-checkbox';
 import { Check, Trash } from 'lucide-react';
 import { useState } from 'react';
-import clsx from 'clsx';
 import { Tag, TagTypes } from './tag';
 import { useProduct } from '@/hooks/useProduct';
 import { Button } from './button';
@@ -52,18 +51,16 @@ export function Checkbox(props: CheckProps) {
   }
 
   return (
-    <div className={clsx('flex items-center justify-between p-4  border rounded-lg', {
-      'bg-gray-400 border-gray-300': !checked,
-      'bg-gray-500 border-gray-400': checked
-    })}>
+    <div
+    data-checked={checked}
+    className='flex items-center justify-between p-4  border rounded-lg bg-gray-400 border-gray-300 data-[checked=true]:bg-gray-500 data-[checked=true]border-gray-400 '
+    >
       <div className='flex items-center gap-4'>
         <CheckboxRadix.Root
-          className={clsx("border-2 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] outline-none transition-all", {
-            'hover:bg-product-purple-dark border-product-purple-light': !checked,
-            'border-feedback-success-normal bg-feedback-success-normal hover:bg-feedback-success-light hover:border-feedback-success-light': checked
-          })}
-          checked={checked}
-          onCheckedChange={handleCheck}
+        checked={checked}
+        data-checked={checked}
+        className="data-[checked=true]:border-feedback-success-normal data-[checked=true]:bg-feedback-success-normal data-[checked=true]:hover:bg-feedback-success-light data-[checked=true]:hover:border-feedback-success-light hover:bg-product-purple-dark border-product-purple-light border-2 flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-[4px] outline-none transition-all"
+        onCheckedChange={handleCheck}
         >
           <CheckboxRadix.Indicator className="text-gray-100">
             <Check size={16} />
@@ -71,10 +68,10 @@ export function Checkbox(props: CheckProps) {
         </CheckboxRadix.Root>
         
         <div className='flex flex-col'>
-          <h1 className={clsx('text-sm', {
-            'text-gray-100 font-bold': !checked,
-            'text-gray-200 line-through': checked
-          })}>{props.productName}</h1>
+          <h1 
+          data-checked={checked}
+          className="data-[checked=true]:text-gray-200 data-[checked=true]:line-through data-[checked=true]:font-normal text-sm text-gray-100 font-bold"
+          >{props.productName}</h1>
           <span className='text-gray-200 text-xs font-normal'>{parseProductQuantity()}</span>
         </div>
       </div>

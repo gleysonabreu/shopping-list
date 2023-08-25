@@ -4,7 +4,6 @@ import * as SelectRadix from '@radix-ui/react-select';
 import { ChevronDown, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
 import SelectItem from './select-item';
 import { twMerge } from 'tailwind-merge';
-import clsx from 'clsx';
 import { useFormContext } from 'react-hook-form';
 
 
@@ -24,17 +23,14 @@ function Select({ listItems, className, name, ...props }: SelectProps, forwarded
     formState: { errors },
   } = useFormContext();
 
-  const mergeClasses = twMerge('inline-flex items-center uppercase focus-within:border-product-purple-light border justify-between rounded-md p-3 text-xs gap-2 bg-gray-400 text-gray-200 outline-none', className);
   return (
     <SelectRadix.Root 
     {...props}
     >
       <SelectRadix.Trigger
       ref={forwardedRef}
-        className={clsx(mergeClasses, {
-          'border-gray-300': !errors[name],
-          'border-red-500': errors[name],
-        })}
+      data-error={!!errors[name]}
+      className={twMerge('data-[error=true]:border-red-500 border-gray-300 inline-flex items-center uppercase focus-within:border-product-purple-light border justify-between rounded-md p-3 text-xs gap-2 bg-gray-400 text-gray-200 outline-none', className)}
       >
         <SelectRadix.Value placeholder="Selecione" />
         <SelectRadix.Icon>
