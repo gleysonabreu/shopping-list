@@ -4,6 +4,7 @@ import { Check, MoreVertical } from 'lucide-react';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { Tag, TagTypes } from './tag';
+import { useProduct } from '@/hooks/useProduct';
 
 interface CheckProps {
   isCheck: boolean;
@@ -15,6 +16,7 @@ interface CheckProps {
 }
 
 export function Checkbox(props: CheckProps) {
+  const { handleDoneAndUndone } = useProduct();
   const [checked, setChecked] = useState(props.isCheck);
 
   function parseProductQuantity() {
@@ -33,6 +35,16 @@ export function Checkbox(props: CheckProps) {
     }
   }
 
+  function handleCheck(checkState: CheckboxRadix.CheckedState) {
+    if(checkState === 'indeterminate') {
+      setChecked(false);
+    } else {
+      setChecked(checkState);
+    }
+
+    handleDoneAndUndone(props.id);
+  }
+
   return (
     <div className={clsx('flex items-center justify-between p-4  border rounded-lg', {
       'bg-gray-400 border-gray-300': !checked,
@@ -45,7 +57,7 @@ export function Checkbox(props: CheckProps) {
             'border-feedback-success-normal bg-feedback-success-normal hover:bg-feedback-success-light hover:border-feedback-success-light': checked
           })}
           checked={checked}
-          onCheckedChange={value => value === 'indeterminate' ? setChecked(false) : setChecked(value)}
+          onCheckedChange={handleCheck}
         >
           <CheckboxRadix.Indicator className="text-gray-100">
             <Check size={16} />

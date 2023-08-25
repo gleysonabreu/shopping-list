@@ -19,6 +19,7 @@ type CreateProduct = Omit<Product, 'id' | 'done'>;
 interface ProductProviderContextValues {
   products: Product[];
   handleSaveProduct: (data: CreateProduct) => Promise<void>;
+  handleDoneAndUndone: (id: string) => Promise<void>;
 }
 
 interface ProductProviderContextProps {
@@ -56,8 +57,17 @@ export function ProductProvider({ children }: ProductProviderContextProps) {
     setProducts(lastState => [product, ...lastState]);
   }
 
+  async function handleDoneAndUndone(id: string) {
+    const allProducts = products;
+    const findProductIndex = allProducts.findIndex(product => product.id === id);
+
+    allProducts[findProductIndex].done = !allProducts[findProductIndex].done
+
+    setProducts(oldState => [...allProducts]);
+  }
+
   return (
-    <ProductProviderContext.Provider value={{ products, handleSaveProduct }}>
+    <ProductProviderContext.Provider value={{ products, handleSaveProduct, handleDoneAndUndone }}>
       {children}
     </ProductProviderContext.Provider>
   );
