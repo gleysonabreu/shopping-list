@@ -99,7 +99,7 @@ export function Header() {
               </div>
 
               <div className="w-10">
-                <Button type='submit' disabled={isSubmitting}>
+                <Button type='submit' disabled={isSubmitting} rounded="full" className="p-2">
                   <Plus size={24} />
                 </Button>
               </div>

@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import * as AlertDialog from '@radix-ui/react-alert-dialog';
+import { Button } from './button';
 
 type DeleteDialog = {
   title: string;
@@ -25,14 +26,14 @@ export function DeleteDialog({ title, description, children, handleDelete }: Del
           </AlertDialog.Description>
           <div className="flex justify-end gap-4">
             <AlertDialog.Cancel asChild>
-              <button className="text-gray-200 text-sm bg-gray-600 hover:bg-gray-500 inline-flex items-center justify-center rounded-lg p-3 font-medium outline-none">
+              <Button color='gray' size='md'>
                 Cancelar
-              </button>
+              </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action asChild>
-              <button onClick={handleDelete} className='text-white text-sm bg-red-600 hover:bg-red-500 inline-flex items-center justify-center rounded-lg p-3 font-medium outline-none'>
+              <Button onClick={handleDelete} color='red' size='md'>
                 Remover
-              </button>
+              </Button>
             </AlertDialog.Action>
           </div>
         </AlertDialog.Content>

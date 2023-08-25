@@ -81,12 +81,13 @@ export function Checkbox(props: CheckProps) {
 
       <div className='inline-flex items-center gap-3'>
         <Tag type={props.productType} isChecked={checked} />
+        
         <DeleteDialog
         handleDelete={handleDeleteProduct}
         title='Deletar produto?'
         description={`Tem certeza que quer deletar o ${props.productName}?`}
         >
-          <Button type='button' variant='red'>
+          <Button type='button' color='red' rounded='full' className='p-2'>
             <Trash size={16} />
           </Button>
         </DeleteDialog>
