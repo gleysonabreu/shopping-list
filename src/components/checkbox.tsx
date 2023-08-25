@@ -1,10 +1,12 @@
 'use client'
 import * as CheckboxRadix from '@radix-ui/react-checkbox';
-import { Check, MoreVertical } from 'lucide-react';
+import { Check, Trash } from 'lucide-react';
 import { useState } from 'react';
 import clsx from 'clsx';
 import { Tag, TagTypes } from './tag';
 import { useProduct } from '@/hooks/useProduct';
+import { Button } from './button';
+import { DeleteDialog } from './delete-dialog';
 
 interface CheckProps {
   isCheck: boolean;
@@ -16,7 +18,7 @@ interface CheckProps {
 }
 
 export function Checkbox(props: CheckProps) {
-  const { handleDoneAndUndone } = useProduct();
+  const { handleDoneAndUndone, handleDelete } = useProduct();
   const [checked, setChecked] = useState(props.isCheck);
 
   function parseProductQuantity() {
@@ -43,6 +45,10 @@ export function Checkbox(props: CheckProps) {
     }
 
     handleDoneAndUndone(props.id);
+  }
+
+  async function handleDeleteProduct() {
+    await handleDelete(props.id);
   }
 
   return (
@@ -75,7 +81,15 @@ export function Checkbox(props: CheckProps) {
 
       <div className='inline-flex items-center gap-3'>
         <Tag type={props.productType} isChecked={checked} />
-        <button><MoreVertical className='text-product-purple-light' /></button>
+        <DeleteDialog
+        handleDelete={handleDeleteProduct}
+        title='Deletar produto?'
+        description={`Tem certeza que quer deletar o ${props.productName}?`}
+        >
+          <Button type='button' variant='red'>
+            <Trash size={16} />
+          </Button>
+        </DeleteDialog>
       </div>
     </div>
   );

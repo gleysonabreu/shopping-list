@@ -20,6 +20,7 @@ interface ProductProviderContextValues {
   products: Product[];
   handleSaveProduct: (data: CreateProduct) => Promise<void>;
   handleDoneAndUndone: (id: string) => Promise<void>;
+  handleDelete: (id: string) => Promise<void>;
 }
 
 interface ProductProviderContextProps {
@@ -57,6 +58,12 @@ export function ProductProvider({ children }: ProductProviderContextProps) {
     setProducts(lastState => [product, ...lastState]);
   }
 
+  async function handleDelete(id: string) {
+    const deleteProduct = products.filter(product => product.id !== id);
+
+    setProducts(oldState => [...deleteProduct]);
+  }
+
   async function handleDoneAndUndone(id: string) {
     const allProducts = products;
     const findProductIndex = allProducts.findIndex(product => product.id === id);
@@ -67,7 +74,7 @@ export function ProductProvider({ children }: ProductProviderContextProps) {
   }
 
   return (
-    <ProductProviderContext.Provider value={{ products, handleSaveProduct, handleDoneAndUndone }}>
+    <ProductProviderContext.Provider value={{ products, handleSaveProduct, handleDoneAndUndone,handleDelete }}>
       {children}
     </ProductProviderContext.Provider>
   );
