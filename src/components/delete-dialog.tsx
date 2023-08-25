@@ -7,14 +7,17 @@ type DeleteDialog = {
   description: string;
   children: ReactNode;
   handleDelete: () => void;
-}
+};
 
-export function DeleteDialog({ title, description, children, handleDelete }: DeleteDialog) {
+export function DeleteDialog({
+  title,
+  description,
+  children,
+  handleDelete,
+}: DeleteDialog) {
   return (
     <AlertDialog.Root>
-      <AlertDialog.Trigger asChild>
-        {children}
-      </AlertDialog.Trigger>
+      <AlertDialog.Trigger asChild>{children}</AlertDialog.Trigger>
       <AlertDialog.Portal>
         <AlertDialog.Overlay className="bg-black/80 data-[state=open]:animate-overlayShow fixed inset-0" />
         <AlertDialog.Content className="data-[state=open]:animate-contentShow fixed top-[50%] left-[50%] max-h-[85vh] w-[90vw] max-w-[500px] translate-x-[-50%] translate-y-[-50%] rounded-lg bg-gray-400 p-6 shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] focus:outline-none">
@@ -26,12 +29,12 @@ export function DeleteDialog({ title, description, children, handleDelete }: Del
           </AlertDialog.Description>
           <div className="flex justify-end gap-4">
             <AlertDialog.Cancel asChild>
-              <Button color='gray' size='md'>
+              <Button color="gray" size="md">
                 Cancelar
               </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action asChild>
-              <Button onClick={handleDelete} color='red' size='md'>
+              <Button onClick={handleDelete} color="red" size="md">
                 Remover
               </Button>
             </AlertDialog.Action>

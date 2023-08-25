@@ -1,6 +1,6 @@
 'use client';
 import { v4 as uuid } from 'uuid';
-import { ReactNode, createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useEffect, useState } from 'react';
 
 export type ProductType = 'bakery' | 'meat' | 'drink' | 'vegetable' | 'fruit';
 export type QuantityType = 'kilogram' | 'liter' | 'unit';
@@ -27,7 +27,8 @@ interface ProductProviderContextProps {
   children: ReactNode;
 }
 
-export const ProductProviderContext = createContext<ProductProviderContextValues | null>(null);
+export const ProductProviderContext =
+  createContext<ProductProviderContextValues | null>(null);
 
 export function ProductProvider({ children }: ProductProviderContextProps) {
   const PRODUCTS_KEY = 'products';
@@ -36,16 +37,14 @@ export function ProductProvider({ children }: ProductProviderContextProps) {
   useEffect(() => {
     const storedProducts = localStorage.getItem(PRODUCTS_KEY);
 
-    if(storedProducts) {
+    if (storedProducts) {
       setProducts(JSON.parse(storedProducts));
     }
-  }, [])
-
+  }, []);
 
   useEffect(() => {
     localStorage.setItem(PRODUCTS_KEY, JSON.stringify(products));
   }, [products]);
-
 
   async function handleSaveProduct(data: CreateProduct) {
     const id = uuid();
@@ -53,28 +52,30 @@ export function ProductProvider({ children }: ProductProviderContextProps) {
       ...data,
       done: false,
       id,
-    }
+    };
 
-    setProducts(lastState => [product, ...lastState]);
+    setProducts((lastState) => [product, ...lastState]);
   }
 
   async function handleDelete(id: string) {
-    const deleteProduct = products.filter(product => product.id !== id);
-
-    setProducts(oldState => [...deleteProduct]);
+    setProducts((oldState) => oldState.filter((product) => product.id !== id));
   }
 
   async function handleDoneAndUndone(id: string) {
     const allProducts = products;
-    const findProductIndex = allProducts.findIndex(product => product.id === id);
+    const findProductIndex = allProducts.findIndex(
+      (product) => product.id === id,
+    );
 
-    allProducts[findProductIndex].done = !allProducts[findProductIndex].done
+    allProducts[findProductIndex].done = !allProducts[findProductIndex].done;
 
-    setProducts(oldState => [...allProducts]);
+    setProducts(() => [...allProducts]);
   }
 
   return (
-    <ProductProviderContext.Provider value={{ products, handleSaveProduct, handleDoneAndUndone,handleDelete }}>
+    <ProductProviderContext.Provider
+      value={{ products, handleSaveProduct, handleDoneAndUndone, handleDelete }}
+    >
       {children}
     </ProductProviderContext.Provider>
   );

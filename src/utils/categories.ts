@@ -1,22 +1,22 @@
 export const categories = [
   {
     name: 'Padaria',
-    value: 'bakery'
+    value: 'bakery',
   },
   {
     name: 'Legume',
-    value: 'vegetable'
+    value: 'vegetable',
   },
   {
     name: 'Carne',
-    value: 'meat'
+    value: 'meat',
   },
   {
     name: 'Fruta',
-    value: 'fruit'
+    value: 'fruit',
   },
   {
     name: 'Bebida',
-    value: 'drink'
-  }
+    value: 'drink',
+  },
 ];

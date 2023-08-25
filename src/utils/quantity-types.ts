@@ -1,14 +1,14 @@
 export const quantityTypes = [
   {
     name: 'L',
-    value: 'liter'
+    value: 'liter',
   },
   {
     name: 'Kg',
-    value: 'kilogram'
+    value: 'kilogram',
   },
   {
     name: 'Un.',
-    value: 'unit'
-  }
+    value: 'unit',
+  },
 ];

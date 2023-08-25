@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -13,8 +13,8 @@ const config: Config = {
           purple: {
             light: '#A881E6',
             dark: '#523480',
-            normal: '#7450AC'
-          }
+            normal: '#7450AC',
+          },
         },
         gray: {
           100: '#FBF9FE',
@@ -22,36 +22,36 @@ const config: Config = {
           300: '#252529',
           400: '#17171A',
           500: '#111112',
-          600: '#0C0C0D'
+          600: '#0C0C0D',
         },
         feedback: {
           success: {
             normal: '#2F723D',
-            light: '#4E995E'
-          }
+            light: '#4E995E',
+          },
         },
         support: {
-          pink: { 
+          pink: {
             light: '#DB5BBF',
             dark: '#251622',
           },
-          orange: { 
+          orange: {
             light: '#E07B67',
             dark: '#261A17',
           },
-          yellow: { 
+          yellow: {
             light: '#BB9F3A',
             dark: '#211E12',
           },
-          green: { 
+          green: {
             light: '#8CAD51',
             dark: '#1C2015',
           },
-          blue: { 
+          blue: {
             light: '#7B94CB',
             dark: '#1A1D23',
-          }
-        }
+          },
+        },
       },
       keyframes: {
         overlayShow: {
@@ -59,7 +59,10 @@ const config: Config = {
           to: { opacity: '1' },
         },
         contentShow: {
-          from: { opacity: '0', transform: 'translate(-50%, -48%) scale(0.96)' },
+          from: {
+            opacity: '0',
+            transform: 'translate(-50%, -48%) scale(0.96)',
+          },
           to: { opacity: '1', transform: 'translate(-50%, -50%) scale(1)' },
         },
       },
@@ -70,5 +73,5 @@ const config: Config = {
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;

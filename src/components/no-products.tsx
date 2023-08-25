@@ -1,4 +1,4 @@
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart } from 'lucide-react';
 
 export function NoProducts() {
   return (

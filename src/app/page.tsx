@@ -1,5 +1,5 @@
-import { Header } from "@/components/header";
-import { ShoppingList } from "@/components/shopping-list";
+import { Header } from '@/components/header';
+import { ShoppingList } from '@/components/shopping-list';
 
 export default function Home() {
   return (
@@ -7,5 +7,5 @@ export default function Home() {
       <Header />
       <ShoppingList />
     </main>
-  )
+  );
 }

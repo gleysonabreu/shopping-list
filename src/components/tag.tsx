@@ -1,6 +1,6 @@
-import { ProductType } from "@/contexts/product";
-import { Apple, Beef, Carrot, Milk, Sandwich } from "lucide-react";
-import { ComponentProps } from "react";
+import { ProductType } from '@/contexts/product';
+import { Apple, Beef, Carrot, Milk, Sandwich } from 'lucide-react';
+import { ComponentProps } from 'react';
 import { tv, VariantProps } from 'tailwind-variants';
 
 const tagBox = tv({
@@ -11,21 +11,22 @@ const tagBox = tv({
       vegetable: 'bg-support-green-dark text-support-green-light',
       fruit: 'bg-support-orange-dark text-support-orange-light',
       drink: 'bg-support-blue-dark text-support-blue-light',
-      meat: 'bg-support-pink-dark text-support-pink-light'
+      meat: 'bg-support-pink-dark text-support-pink-light',
     },
     checked: {
       true: 'opacity-50',
-    }
+    },
   },
   defaultVariants: {
     variant: 'bakery',
     checked: false,
-  }
+  },
 });
 
-type TagProps = ComponentProps<'div'> & VariantProps<typeof tagBox> & {
-  variant: ProductType;
-};
+type TagProps = ComponentProps<'div'> &
+  VariantProps<typeof tagBox> & {
+    variant: ProductType;
+  };
 
 const tagData: Record<ProductType, { icon: JSX.Element; name: string }> = {
   bakery: { icon: <Sandwich size={16} />, name: 'Padaria' },
@@ -41,7 +42,9 @@ export function Tag({ variant, checked, className, ...props }: TagProps) {
   return (
     <div className={tagBox({ variant, checked, className })} {...props}>
       {tag.icon}
-      <span className="lowercase text-xs font-bold leading-[130%] hidden sm:block">{tag.name}</span>
+      <span className="lowercase text-xs font-bold leading-[130%] hidden sm:block">
+        {tag.name}
+      </span>
     </div>
   );
 }

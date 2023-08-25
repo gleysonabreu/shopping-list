@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import React, { Ref, forwardRef } from 'react';
 import * as SelectRadix from '@radix-ui/react-select';
 import { ChevronDown, ChevronDownIcon, ChevronUpIcon } from 'lucide-react';
@@ -6,31 +6,34 @@ import SelectItem from './select-item';
 import { twMerge } from 'tailwind-merge';
 import { useFormContext } from 'react-hook-form';
 
-
 type Item = {
   name: string;
   value: string;
-}
+};
 
 type SelectProps = SelectRadix.SelectProps & {
   listItems: Item[];
   className?: string;
   name: string;
-}
+};
 
-function Select({ listItems, className, name, ...props }: SelectProps, forwardedRef: Ref<HTMLButtonElement>){
+function Select(
+  { listItems, className, name, ...props }: SelectProps,
+  forwardedRef: Ref<HTMLButtonElement>,
+) {
   const {
     formState: { errors },
   } = useFormContext();
 
   return (
-    <SelectRadix.Root 
-    {...props}
-    >
+    <SelectRadix.Root {...props}>
       <SelectRadix.Trigger
-      ref={forwardedRef}
-      data-error={!!errors[name]}
-      className={twMerge('data-[error=true]:border-red-500 border-gray-300 inline-flex items-center uppercase focus-within:border-product-purple-light border justify-between rounded-md p-3 text-xs gap-2 bg-gray-400 text-gray-200 outline-none', className)}
+        ref={forwardedRef}
+        data-error={!!errors[name]}
+        className={twMerge(
+          'data-[error=true]:border-red-500 border-gray-300 inline-flex items-center uppercase focus-within:border-product-purple-light border justify-between rounded-md p-3 text-xs gap-2 bg-gray-400 text-gray-200 outline-none',
+          className,
+        )}
       >
         <SelectRadix.Value placeholder="Selecione" />
         <SelectRadix.Icon>
@@ -42,20 +45,22 @@ function Select({ listItems, className, name, ...props }: SelectProps, forwarded
           <SelectRadix.ScrollUpButton className="flex items-center justify-center h-[25px] bg-gray-400 text-product-purple-light cursor-default">
             <ChevronUpIcon />
           </SelectRadix.ScrollUpButton>
-  
+
           <SelectRadix.Viewport>
-            {listItems.map(item => 
-              <SelectItem key={item.value} value={item.value}>{item.name}</SelectItem>
-            )}
+            {listItems.map((item) => (
+              <SelectItem key={item.value} value={item.value}>
+                {item.name}
+              </SelectItem>
+            ))}
           </SelectRadix.Viewport>
-  
+
           <SelectRadix.ScrollDownButton className="flex items-center justify-center h-[25px] bg-gray-400 text-product-purple-light cursor-default">
             <ChevronDownIcon />
           </SelectRadix.ScrollDownButton>
         </SelectRadix.Content>
       </SelectRadix.Portal>
     </SelectRadix.Root>
-);
+  );
 }
 
 export default forwardRef<HTMLButtonElement, SelectProps>(Select);
