@@ -4,7 +4,7 @@ import { Input } from "@/components/input";
 import Select from "@/components/select";
 import { categories } from "@/utils/categories";
 import { quantityTypes } from "@/utils/quantity-types";
-import { Plus } from "lucide-react";
+import { Plus, ShoppingBag } from "lucide-react";
 import { Controller, FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from "zod";
@@ -45,7 +45,10 @@ export function Header() {
   return (
     <FormProvider {...createFormItem}>
       <header className="flex flex-col pt-10 pb-10 gap-8">
-          <h1 className="text-gray-100 text-2xl font-bold">Lista de compras</h1>
+          <div className="flex gap-2 items-center justify-center">
+            <ShoppingBag size={32} strokeWidth={3} className="text-product-purple-normal" />
+            <h1 className="text-gray-100 uppercase text-2xl font-bold">Lista de compras</h1>
+          </div>
 
           <form className="flex flex-col sm:flex-row gap-3 w-full" onSubmit={handleSubmit(handleAddItem)}>
             <div className="flex sm:w-96 w-full flex-col gap-2 text-gray-200 focus-within:text-product-purple-light">
