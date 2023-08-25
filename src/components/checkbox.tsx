@@ -2,17 +2,18 @@
 import * as CheckboxRadix from '@radix-ui/react-checkbox';
 import { Check, Trash } from 'lucide-react';
 import { useState } from 'react';
-import { Tag, TagTypes } from './tag';
+import { Tag } from './tag';
 import { useProduct } from '@/hooks/useProduct';
 import { Button } from './button';
 import { DeleteDialog } from './delete-dialog';
+import { ProductType, QuantityType } from '@/contexts/product';
 
 interface CheckProps {
   isCheck: boolean;
   productName: string;
   quantity: number;
-  quantityType: 'kilogram' | 'liter' | 'unit';
-  productType: TagTypes;
+  quantityType: QuantityType;
+  productType: ProductType;
   id: string;
 }
 
@@ -77,7 +78,7 @@ export function Checkbox(props: CheckProps) {
       </div>
 
       <div className='inline-flex items-center gap-3'>
-        <Tag type={props.productType} isChecked={checked} />
+        <Tag variant={props.productType} checked={checked} />
         
         <DeleteDialog
         handleDelete={handleDeleteProduct}
